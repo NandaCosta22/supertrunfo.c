@@ -2,16 +2,16 @@
 
   int main() {
 
-  int população, número_de_pontos_turísticos;
+  int populacao, número_de_pontos_turísticos;
   float área, PIB;
   char código [10];
   char cidade [30];
   char opcao;
-  char nome [50];
-
+  char nome [100];
+  float densidade_populacional, per_capita;
 
  printf("Digite a população: \n");
- scanf("%d", &população);
+ scanf("%d", &populacao);
 
  printf("Digite o número de pontos turísticos: \n");
  scanf("%d", &número_de_pontos_turísticos);
@@ -32,15 +32,21 @@
  scanf(" %s", &código);
 
  printf("Digite a cidade: \n");
- scanf(" %[^\n]s", cidade);
+ scanf(" %s[^\n]s", cidade);
 
- printf("Carta 2: \n - Estado: %c\n - Código: %s\n - Nome da Cidade: %s\n - Área: %f KM² \n - PIB: %f bilhões de reais \n - Números de Pontos Turísticos: %d\n", opcao,código,cidade,área,PIB,número_de_pontos_turísticos);
-
+ densidade_populacional = (float) populacao / área;
+ per_capita = ( PIB * 1000000000.0) / populacao;
+ 
+ printf("%s\n - Estado: %c\n - Código: %s\n - Nome da Cidade: %s\n - População: %d\n - Área: %.2f KM² \n - PIB: %f bilhões de reais \n - Números de Pontos Turísticos: %d\n - Densidade Populacional: %.2f hab/km²\n - PIB per Capita: %.2f reais\n",nome, opcao, código, cidade, populacao, área, PIB, número_de_pontos_turísticos, densidade_populacional, per_capita);
 
    return 0;
 
 
   }
+ 
+  
+
+  
  
  
 
