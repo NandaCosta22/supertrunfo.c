@@ -88,6 +88,18 @@ int main() {
     printf("PIB per Capita: Carta %d venceu (%d)\n", (per_capita1 > per_capita2) ? 1 : 2, (per_capita1 > per_capita2));
     printf("Super Poder: Carta %d venceu (%d)\n", (superpoder1 > superpoder2) ? 1 : 2, (superpoder1 > superpoder2));
 
+    printf("Comparação de Areas:\n");
+    printf("Carta 1 (%s): %.2f km²\n", cidade1, area1);
+    printf("Carta 2 (%s): %.2f km²\n", cidade2, area2);
+
+    if ( area1> area2) {
+        printf("Resultado: Carta 1 (%s) venceu! \n",cidade1);
+    } else if (area1 < area2) {
+        printf("Resultado: Carta 2 (%s) venceu! \n",cidade2);
+    } 
+    
+    return 0;
+
     return 0;
 }
   
