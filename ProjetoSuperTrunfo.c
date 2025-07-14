@@ -2,7 +2,7 @@
 
 int main() {
     unsigned long int populacao1, populacao2;
-    int numero1, numero2;
+    int numero1, numero2, resultado;
     int pontos_turisticos1, pontos_turisticos2;
     float area1, area2, PIB1, PIB2;
     float densidade1, densidade2, per_capita1, per_capita2;
@@ -10,6 +10,7 @@ int main() {
     char codigo1[30], codigo2[30];
     char cidade1[100], cidade2[100];
     char estado1, estado2;
+    int variavel;
 
     // Leitura dos dados da Carta 1
     printf("Digite a populacao: \n");
@@ -42,7 +43,7 @@ int main() {
     per_capita1 = (PIB1 * 1000000000.0) / populacao1;
     superpoder1 = populacao1 + area1 + PIB1 + pontos_turisticos1 + per_capita1 + (1.0 / densidade1);
 
-    printf("\nCarta %d\n - Estado: %c\n - Código: %s\n - Nome da Cidade: %s\n - População: %lu\n - Área: %.2f KM²\n - PIB: %.2f bilhões de reais\n - Pontos Turísticos: %d\n - Densidade Populacional: %.2f hab/km²\n - PIB per Capita: %.2f reais\n",
+    printf("\nCarta %d\n - Estado: %c\n - Código: %s\n - Nome da Cidade: %s\n - População: %lu\n - Área: %.2f KM²\n - PIB: %.2f bilhões de reais\n - Pontos Turísticos: %d\n - Densidade Populacional: %.2f hab/km²\n - PIB per Capita: %.2f reais \n",
         numero1, estado1, codigo1, cidade1, populacao1, area1, PIB1, pontos_turisticos1, densidade1, per_capita1);
 
     // Leitura dos dados da Carta 2
@@ -88,7 +89,7 @@ int main() {
     printf("PIB per Capita: Carta %d venceu (%d)\n", (per_capita1 > per_capita2) ? 1 : 2, (per_capita1 > per_capita2));
     printf("Super Poder: Carta %d venceu (%d)\n", (superpoder1 > superpoder2) ? 1 : 2, (superpoder1 > superpoder2));
 
-    printf("Comparação de Areas:\n");
+    printf("\nComparacao de Areas \n");
     printf("Carta 1 (%s): %.2f km²\n", cidade1, area1);
     printf("Carta 2 (%s): %.2f km²\n", cidade2, area2);
 
@@ -97,10 +98,74 @@ int main() {
     } else if (area1 < area2) {
         printf("Resultado: Carta 2 (%s) venceu! \n",cidade2);
     } 
-    
-    return 0;
+     
+     printf("\nEscolha o atributo a ser comparado:\n");
+     printf("1. Nome do Estado\n");
+     printf("2. População\n");
+     printf("3. Área\n");
+     printf("4. PIB\n");
+     printf("5. Pontos Turísticos\n");
+     printf("6. Densidade demográfica\n");
+     scanf("%d", &variavel);
+     
+     switch(variavel) {
+       case 1:
+        printf("Cidade 1 - %s\n", cidade1);
+        printf("Cidade 2 - %s\n", cidade2);
+        printf("Não há comparação para este atributo\n");
+        break;
+       case 2:
+        if (populacao1 > populacao2){
+         printf(" São Paulo: %lu  \nRio de janeiro: %lu\n Resultado: São Paulo venceu!\n", populacao1, populacao2 );
+        } else if (populacao2 > populacao1){
+         printf(" São Paulo: %lu  \nRio de janeiro: %lu\n Resultado: Rio de Janeiro venceu!\n", populacao1, populacao2);
+        } else {
+            printf("Resultado: Empate!");
+        }
+        break;
+       case 3:
+        if ( area1 > area2) {
+         printf("São Paulo: %.2f KM² \nRio de Janeiro: %.2f KM²\n Resultado: São Paulo venceu!\n", area1, area2);
+        } else if (area2 > area1){
+         printf("São Paulo: %.2f KM² \nRio de Janeiro: %.2f KM²\n Resultado: Rio de Janeiro venceu!\n", area1, area2);
+        } else {
+         printf("Resultado: Empate!");
+        }
+        break;
+       case 4:
+        if (PIB1 > PIB2){
+        printf("São Paulo: %.2f bilhões de reais \nRio de Janeiro: %.2f bilhões de reais\n Resultado: São Paulo venceu!\n", PIB1, PIB2);
+        } else if (PIB2 > PIB1){
+        printf("São Paulo: %.2f bilhões de reais \nRio de Janeiro: %.2f bilhões de reais\n Resultado: Rio de Janeiro venceu!\n", PIB1, PIB2);
+        } else {
+        printf("Resultado: Empate!");
+        }
+        break;
+       case 5:
+        if (pontos_turisticos1 > pontos_turisticos2){
+        printf("São Paulo: %d \nRio de Janeiro: %d\n Resultado: São Paulo venceu!\n", pontos_turisticos1, pontos_turisticos2);
+        } else if (pontos_turisticos2 > pontos_turisticos1){
+        printf("São Paulo: %d \nRio de Janeiro: %d\n Resultado: Rio de Janeiro venceu!\n", pontos_turisticos1, pontos_turisticos2);
+        } else {
+        printf("Resultado: Empate!");
+        }
+        break;
+       case 6:
+        if (densidade1 < densidade2){
+        printf("São Paulo: %.2f hab/km² \nRio de Janeiro: %.2f hab/km²\n Resultado: São Paulo venceu!\n", densidade1, densidade2);
+        } else if (densidade2 < densidade1){
+        printf("São Paulo: %.2f hab/km² \nRio de Janeiro: %.2f hab/km²\n Resultado: Rio de Janeiro venceu!\n", densidade1, densidade2);
+        } else {
+        printf("Resultado: Empate!");  
+        }
+        break;
+        default:
+         printf("Opção Inválida!");
+     }
 
+    return 0;
 }
+
   
 
   
