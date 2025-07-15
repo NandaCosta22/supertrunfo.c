@@ -2,11 +2,14 @@
 
 int main() {
     unsigned long int populacao1, populacao2;
-    int numero1, numero2, resultado;
+    int numero1, numero2, resultado, comparacao1, comparacao2;
     int pontos_turisticos1, pontos_turisticos2;
     float area1, area2, PIB1, PIB2;
     float densidade1, densidade2, per_capita1, per_capita2;
     float superpoder1, superpoder2;
+    float valor1_carta1 = 0, valor1_carta2 = 0;
+    float valor2_carta1 = 0, valor2_carta2 = 0;
+    float soma_carta1 = 0, soma_carta2 = 0;
     char codigo1[30], codigo2[30];
     char cidade1[100], cidade2[100];
     char estado1, estado2;
@@ -160,8 +163,85 @@ int main() {
         }
         break;
         default:
-         printf("Opção Inválida!");
+         printf("Opção Inválida!\n");
      }
+
+    printf("\n***Comparação entre dois atributos***\n");
+    printf("Você deve escolher dois atributos para comparar\n");
+
+    printf("1. Número de pontos turísticos\n");
+    printf("2. População\n");
+    printf("3. PIB\n");
+    printf("4. PIB per Capita\n");
+
+    printf("Escolha o primeiro atributo: ");
+    scanf("%d", &comparacao1);
+    if (comparacao1 < 1 || comparacao1 > 4) {
+        printf("Opção inválida! Encerrando comparação.\n");
+        return 0;
+    }
+
+    printf("Escolha o segundo atributo (diferente do primeiro): ");
+    scanf("%d", &comparacao2);
+    while (comparacao2 < 1 || comparacao2 > 4 || comparacao2 == comparacao1) {
+        printf("Opção inválida! Escolha um atributo diferente do primeiro: ");
+        scanf("%d", &comparacao2);
+    }
+
+    switch(comparacao1) {
+        case 1: valor1_carta1 = pontos_turisticos1; valor1_carta2 = pontos_turisticos2; break;
+        case 2: valor1_carta1 = populacao1; valor1_carta2 = populacao2; break;
+        case 3: valor1_carta1 = PIB1; valor1_carta2 = PIB2; break;
+        case 4: valor1_carta1 = per_capita1; valor1_carta2 = per_capita2; break;
+    }
+    switch(comparacao2) {
+        case 1: valor2_carta1 = pontos_turisticos1; valor2_carta2 = pontos_turisticos2; break;
+        case 2: valor2_carta1 = populacao1; valor2_carta2 = populacao2; break;
+        case 3: valor2_carta1 = PIB1; valor2_carta2 = PIB2; break;
+        case 4: valor2_carta1 = per_capita1; valor2_carta2 = per_capita2; break;
+    }
+
+    printf("\nComparação dos atributos:\n");
+
+    printf("Atributo 1: %d\n", comparacao1);
+    printf("Carta 1 (%s): %.2f\n", cidade1, valor1_carta1);
+    printf("Carta 2 (%s): %.2f\n", cidade2, valor1_carta2);
+    int vencedor1 = (valor1_carta1 > valor1_carta2) ? 1 : (valor1_carta2 > valor1_carta1) ? 2 : 0;
+    if (vencedor1 == 1) {
+        printf("Vencedor do atributo 1: Carta 1 (%s)\n", cidade1);
+    } else if (vencedor1 == 2) {
+        printf("Vencedor do atributo 1: Carta 2 (%s)\n", cidade2);
+    } else {
+        printf("Empate no atributo 1!\n");
+    }
+
+    printf("\nAtributo 2: %d\n", comparacao2);
+    printf("Carta 1 (%s): %.2f\n", cidade1, valor2_carta1);
+    printf("Carta 2 (%s): %.2f\n", cidade2, valor2_carta2);
+    int vencedor2 = (valor2_carta1 > valor2_carta2) ? 1 : (valor2_carta2 > valor2_carta1) ? 2 : 0;
+    if (vencedor2 == 1) {
+        printf("Vencedor do atributo 2: Carta 1 (%s)\n", cidade1);
+    } else if (vencedor2 == 2) {
+        printf("Vencedor do atributo 2: Carta 2 (%s)\n", cidade2);
+    } else {
+        printf("Empate no atributo 2!\n");
+    }
+
+    soma_carta1 = valor1_carta1 + valor2_carta1;
+    soma_carta2 = valor1_carta2 + valor2_carta2;
+
+    printf("\nSoma dos atributos:\n");
+    printf("Carta 1 (%s): %.2f\n", cidade1, soma_carta1);
+    printf("Carta 2 (%s): %.2f\n", cidade2, soma_carta2);
+
+    int vencedor_final = (soma_carta1 > soma_carta2) ? 1 : (soma_carta2 > soma_carta1) ? 2 : 0;
+    if (vencedor_final == 1) {
+        printf("Resultado final: Carta 1 (%s) venceu!\n", cidade1);
+    } else if (vencedor_final == 2) {
+        printf("Resultado final: Carta 2 (%s) venceu!\n", cidade2);
+    } else {
+        printf("Resultado final: Empate!\n");
+    }
 
     return 0;
 }
